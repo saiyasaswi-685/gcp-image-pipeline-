@@ -1,0 +1,6 @@
+{
+  "api_endpoint": "https://ouf0toqf5a.execute-api.us-east-1.amazonaws.com/prod/upload",
+  "api_key": "CUGefKm1OF8kGEr84bqQz9sCXZbkZXou56hmxKTC",
+  "deployment_platform": "AWS",
+  "notes": "Deployed on AWS using Terraform to demonstrate multi-cloud IaC portability. Logic fully mirrors GCP requirements."
+}
