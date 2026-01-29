@@ -1,8 +1,5 @@
-Here is the completely professional, all-English version of your **README.md**. I have designed this to meet industry standards, ensuring you get those **100/100 marks**.
 
-Copy the entire block below and paste it into your `README.md` file.
 
----
 
 ```markdown
 # Serverless Image Processing Pipeline
@@ -108,3 +105,4 @@ terraform destroy -auto-approve
 
 
 ```
+
