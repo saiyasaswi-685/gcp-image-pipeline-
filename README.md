@@ -1,45 +1,40 @@
-
----
-
 ```markdown
 # Serverless Image Processing Pipeline
 
-An enterprise-grade, event-driven image processing architecture built on AWS using Terraform (Infrastructure as Code). This project automates the workflow of receiving, processing, and storing media files securely in the cloud.
+An enterprise-grade, event-driven image processing architecture built on AWS using Terraform.
 
 ## 📺 Project Demonstration
-Watch the full end-to-end walkthrough and live demo here:
+Watch the full end-to-end walkthrough and live demo here:  
 **[View Demo on YouTube](https://youtu.be/GitDLSMGX5s)**
 
 ---
 
 ## 🏗️ System Architecture & Workflow
-The pipeline follows a decoupled, serverless architecture to ensure high availability and cost-efficiency.
 
+![Architecture Flowchart](./work_flow.png)
 
-### Workflow Steps:
-1.  **API Entry**: A user sends an image via a POST request to the **AWS API Gateway**.
-2.  **Security**: The request is validated using a unique **X-API-Key** in the header.
-3.  **Compute**: API Gateway triggers an **AWS Lambda** function, passing the Base64 encoded image.
-4.  **Storage (Raw)**: The Lambda function saves the original image to the **Uploads S3 Bucket**.
-5.  **Processing**: The function performs image processing (e.g., renaming or conversion) and saves the result to the **Processed S3 Bucket**.
-6.  **Separation**: Using two distinct buckets prevents recursive triggers and maintains a clean data lifecycle.
+1. **API Entry**: User sends an image via POST request to **AWS API Gateway**.
+2. **Security**: Request is validated using a unique **X-API-Key**.
+3. **Compute**: API Gateway triggers an **AWS Lambda** function.
+4. **Storage (Raw)**: Lambda saves the original image to the **Uploads S3 Bucket**.
+5. **Processing**: Lambda processes the image and saves the result to the **Processed S3 Bucket**.
+6. **Separation**: Two-bucket design prevents recursive triggers and ensures data integrity.
 
 ---
 
 ## 📂 Repository Structure
-The project is organized into clear modules for infrastructure and application logic:
-
 ```text
 .
 ├── api-spec/
-│   └── openapi.yaml          # API Endpoints & Authentication details
+│   └── openapi.yaml          # API documentation & endpoints
 ├── functions/
-│   └── image_processor.py    # Python script for image handling & S3 interaction
+│   └── image_processor.py    # Python logic for image handling
 ├── terraform/
-│   ├── main.tf               # AWS Resource definitions (S3, Lambda, API Gateway)
-│   └── variables.tf          # Environment variables and constants
-├── README.md                 # Project guide
-└── submission.json           # API Endpoint and Secure API Key
+│   ├── main.tf               # Infrastructure resource definitions
+│   └── variables.tf          # Environment variables
+├── work_flow.png             # Hand-drawn Architecture Diagram
+├── README.md                 # Project documentation
+└── submission.json           # API credentials and endpoint
 
 ```
 
@@ -47,34 +42,26 @@ The project is organized into clear modules for infrastructure and application l
 
 ## 🛠️ Technology Stack
 
-* **Cloud Platform**: Amazon Web Services (AWS)
-* **Infrastructure as Code**: Terraform
-* **Serverless Compute**: AWS Lambda
-* **Object Storage**: Amazon S3
+* **Cloud Platform**: AWS
+* **IaC**: Terraform
+* **Compute**: AWS Lambda
+* **Storage**: Amazon S3
 * **API Management**: AWS API Gateway
-* **Development Language**: Python 3.x
+* **Language**: Python 3.x
 
 ---
 
 ## 🚀 Deployment & Usage
 
-### 1. Initialization
+### 1. Initialization & Apply
 
 ```bash
 terraform init
-
-```
-
-### 2. Execution
-
-```bash
 terraform apply -auto-approve
 
 ```
 
-### 3. Verification
-
-Use `curl` to test the pipeline (replace values from `submission.json`):
+### 2. Verification (CURL)
 
 ```bash
 curl -X POST <API_ENDPOINT_URL> \
@@ -84,22 +71,12 @@ curl -X POST <API_ENDPOINT_URL> \
 
 ```
 
-### 4. Resource Cleanup
-
-```bash
-terraform destroy -auto-approve
-
-```
-
 ---
 
 **Author: Sai Yasaswi**
-*Submitted for the Cloud Infrastructure Engineering Assessment.*
 
 ```
 
----
-
-
+Would you like me to double-check your GitHub link one last time before you submit?
 
 ```
