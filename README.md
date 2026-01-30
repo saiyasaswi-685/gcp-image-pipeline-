@@ -9,7 +9,6 @@ An enterprise-grade, event-driven image processing architecture built on AWS usi
 ---
 
 ## 🏗️ System Architecture & Workflow
-The pipeline follows a decoupled, serverless architecture to ensure high availability and cost-efficiency.
 
 ![Architecture Flowchart](work_flow.png)
 
@@ -106,10 +105,6 @@ To avoid ongoing AWS costs, destroy the infrastructure when finished:
 terraform destroy -auto-approve
 
 ```
-
----
-
-**Author: Sai Yasaswi**
 
 ```
 
