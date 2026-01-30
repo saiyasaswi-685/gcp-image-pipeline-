@@ -1,24 +1,25 @@
 ```markdown
 # Serverless Image Processing Pipeline
 
-An enterprise-grade, event-driven image processing architecture built on AWS using Terraform.
+An enterprise-grade, event-driven image processing architecture built on AWS using Terraform (Infrastructure as Code). This project automates the workflow of receiving, processing, and storing media files securely in the cloud.
 
 ## 📺 Project Demonstration
-Watch the full end-to-end walkthrough and live demo here:  
 **[View Demo on YouTube](https://youtu.be/GitDLSMGX5s)**
 
 ---
 
 ## 🏗️ System Architecture & Workflow
+The pipeline follows a decoupled, serverless architecture to ensure high availability and cost-efficiency.
 
-![Architecture Flowchart](./work_flow.png)
+![Architecture Flowchart](work_flow.png)
 
-1. **API Entry**: User sends an image via POST request to **AWS API Gateway**.
-2. **Security**: Request is validated using a unique **X-API-Key**.
-3. **Compute**: API Gateway triggers an **AWS Lambda** function.
-4. **Storage (Raw)**: Lambda saves the original image to the **Uploads S3 Bucket**.
-5. **Processing**: Lambda processes the image and saves the result to the **Processed S3 Bucket**.
-6. **Separation**: Two-bucket design prevents recursive triggers and ensures data integrity.
+### Workflow Steps:
+1. **API Entry**: User sends an image via a POST request to the **AWS API Gateway**.
+2. **Security**: Request is validated using a unique **X-API-Key** in the header.
+3. **Compute**: API Gateway triggers an **AWS Lambda** function, passing the image data.
+4. **Storage (Raw)**: The Lambda function saves the original image to the **Uploads S3 Bucket**.
+5. **Processing**: The function performs image processing and saves the result to the **Processed S3 Bucket**.
+6. **Separation**: Using two distinct buckets prevents recursive triggers and maintains a clean data lifecycle.
 
 ---
 
@@ -32,7 +33,7 @@ Watch the full end-to-end walkthrough and live demo here:
 ├── terraform/
 │   ├── main.tf               # Infrastructure resource definitions
 │   └── variables.tf          # Environment variables
-├── work_flow.png             # Hand-drawn Architecture Diagram
+├── work_flow.png             # System Architecture Diagram
 ├── README.md                 # Project documentation
 └── submission.json           # API credentials and endpoint
 
@@ -51,23 +52,58 @@ Watch the full end-to-end walkthrough and live demo here:
 
 ---
 
-## 🚀 Deployment & Usage
+## 🚀 Deployment Guide
 
-### 1. Initialization & Apply
+### Step 1: Initialization
+
+Initialize the Terraform working directory to download the necessary providers.
 
 ```bash
 terraform init
+
+```
+
+### Step 2: Infrastructure Provisioning
+
+Deploy the AWS resources (S3, Lambda, API Gateway, IAM Roles).
+
+```bash
 terraform apply -auto-approve
 
 ```
 
-### 2. Verification (CURL)
+### Step 3: Verification
+
+After deployment, retrieve the API Endpoint and API Key from the output or `submission.json`.
+
+---
+
+## 🧪 Testing the Pipeline
+
+You can test the end-to-end flow using `curl` to upload a local image.
 
 ```bash
-curl -X POST <API_ENDPOINT_URL> \
+curl -X POST <YOUR_API_ENDPOINT> \
      -H "x-api-key: <YOUR_API_KEY>" \
      -H "Content-Type: image/jpeg" \
-     --data-binary "@yourimage.jpg"
+     --data-binary "@test_image.jpg"
+
+```
+
+### Expected Results:
+
+* **HTTP 200 OK**: The API responds with a success message.
+* **Uploads Bucket**: Contains the original `test_image.jpg`.
+* **Processed Bucket**: Contains the processed version of the image.
+
+---
+
+## 🧹 Resource Cleanup
+
+To avoid ongoing AWS costs, destroy the infrastructure when finished:
+
+```bash
+terraform destroy -auto-approve
 
 ```
 
@@ -76,7 +112,5 @@ curl -X POST <API_ENDPOINT_URL> \
 **Author: Sai Yasaswi**
 
 ```
-
-Would you like me to double-check your GitHub link one last time before you submit?
 
 ```
