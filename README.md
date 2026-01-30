@@ -1,4 +1,3 @@
-```markdown
 # Serverless Image Processing Pipeline
 
 An enterprise-grade, event-driven image processing architecture built on AWS using Terraform (Infrastructure as Code). This project automates the workflow of receiving, processing, and storing media files securely in the cloud.
@@ -36,76 +35,50 @@ An enterprise-grade, event-driven image processing architecture built on AWS usi
 ├── README.md                 # Project documentation
 └── submission.json           # API credentials and endpoint
 
-```
+🛠️ Technology Stack
 
----
+Cloud Platform: AWS
 
-## 🛠️ Technology Stack
+Infrastructure as Code (IaC): Terraform
 
-* **Cloud Platform**: AWS
-* **IaC**: Terraform
-* **Compute**: AWS Lambda
-* **Storage**: Amazon S3
-* **API Management**: AWS API Gateway
-* **Language**: Python 3.x
+Compute: AWS Lambda
 
----
+Storage: Amazon S3
 
-## 🚀 Deployment Guide
+API Management: AWS API Gateway
 
-### Step 1: Initialization
+Language: Python 3.x
 
-Initialize the Terraform working directory to download the necessary providers.
-
-```bash
+🚀 Deployment Guide
+Step 1: Initialization
 terraform init
 
-```
-
-### Step 2: Infrastructure Provisioning
-
-Deploy the AWS resources (S3, Lambda, API Gateway, IAM Roles).
-
-```bash
+Step 2: Infrastructure Provisioning
 terraform apply -auto-approve
 
-```
+Step 3: Verification
 
-### Step 3: Verification
+After deployment, retrieve the API Endpoint and API Key from Terraform output or submission.json.
 
-After deployment, retrieve the API Endpoint and API Key from the output or `submission.json`.
+🧪 Testing the Pipeline
 
----
+Test the API by uploading an image using curl:
 
-## 🧪 Testing the Pipeline
-
-You can test the end-to-end flow using `curl` to upload a local image.
-
-```bash
 curl -X POST <YOUR_API_ENDPOINT> \
-     -H "x-api-key: <YOUR_API_KEY>" \
-     -H "Content-Type: image/jpeg" \
-     --data-binary "@test_image.jpg"
+  -H "x-api-key: <YOUR_API_KEY>" \
+  -H "Content-Type: image/jpeg" \
+  --data-binary "@test_image.jpg"
 
-```
+Expected Results
 
-### Expected Results:
+HTTP 200 OK response
 
-* **HTTP 200 OK**: The API responds with a success message.
-* **Uploads Bucket**: Contains the original `test_image.jpg`.
-* **Processed Bucket**: Contains the processed version of the image.
+Original image stored in Uploads S3 Bucket
 
----
+Processed image stored in Processed S3 Bucket
 
-## 🧹 Resource Cleanup
+🧹 Resource Cleanup
 
-To avoid ongoing AWS costs, destroy the infrastructure when finished:
+To avoid ongoing AWS charges, destroy the infrastructure:
 
-```bash
 terraform destroy -auto-approve
-
-```
-
-```
-
-```
