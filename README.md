@@ -3,7 +3,7 @@
 An enterprise-grade, event-driven image processing architecture built on AWS using Terraform (Infrastructure as Code). This project automates the workflow of receiving, processing, and storing media files securely in the cloud.
 
 ## 📺 Project Demonstration
-**[View Demo on YouTube](https://youtu.be/GitDLSMGX5s)**
+**[View Demo on YouTube](https://youtu.be/297VkFFXqLc)**
 
 ---
 
@@ -82,3 +82,4 @@ Processed image stored in Processed S3 Bucket
 To avoid ongoing AWS charges, destroy the infrastructure:
 
 terraform destroy -auto-approve
+
